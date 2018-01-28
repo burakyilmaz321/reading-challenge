@@ -31,7 +31,7 @@ class ReadingsController < ApplicationController
     if @reading.update(reading_params)
       redirect_to root_path
     else
-      render 'new'
+      render 'edit'
     end
   end
 
