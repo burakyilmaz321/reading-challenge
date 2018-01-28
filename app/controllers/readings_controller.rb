@@ -18,6 +18,25 @@ class ReadingsController < ApplicationController
     end
   end
 
+  def edit
+    @reading = current_user.readings.find(params[:id])
+  end
+  
+  def update
+    @reading = current_user.readings.find(params[:id])
+    if @reading.update(reading_params)
+      redirect_to root_path
+    else
+      render 'new'
+    end
+  end
+
+  def destroy
+    @reading = current_user.readings.find(params[:id])
+    @reading.destroy
+    redirect_to root_path    
+  end
+
   private
 
   def reading_params

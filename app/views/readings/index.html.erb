@@ -21,22 +21,26 @@
 
   <h2>Your readings so far:</h2>
 
-  <table style="width:100%">
+  <table style="width:50%">
     <tr>
       <th>Title</th>
       <th>Author</th>
       <th>Status</th>
       <th>Month</th>
       <th>Number of Pages</th>
+      <th></th>
+      <th></th>
     </tr>
     <% @readings.each do |reading| %>
       <tr>
-        <th><%= reading.book.title %></th>
-        <th><%= reading.book.author.name %></th>
-        <th><%= reading.status %></th>
-        <th><%= reading.month %></th>
-        <th><%= reading.book.page_num %></th>
-        </tr>
+        <td><%= reading.book.title %></td>
+        <td><%= reading.book.author.name %></td>
+        <td><%= reading.status %></td>
+        <td><%= reading.month %></td>
+        <td><%= reading.book.page_num %></td>
+        <td><%= link_to "Edit", edit_reading_path(reading) %></td>
+        <td><%= link_to "Delete", reading_path(reading), method: :delete, data: {confirm: "Are you sure?"} %></td>
+      </tr>
     <% end %>
   </table>
 
