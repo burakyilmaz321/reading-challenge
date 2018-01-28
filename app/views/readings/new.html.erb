@@ -15,7 +15,7 @@
   <% end %>
   
   <p>Reading Status:</p>
-  <%= f.text_field :status %><br>
+  <%= f.select :status, %w(Reading Done) %><br>
 
   <p>Month:</p>
   <%= f.select :month, @months %><br>
