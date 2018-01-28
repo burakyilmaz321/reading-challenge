@@ -1,0 +1,24 @@
+<h1>Add new reading</h1>
+
+<%= form_for @reading do |f| %>
+  <%= f.fields_for :books do |b| %>
+    <p>Book Title:</p>
+    <%= b.text_field :title %><br>
+    
+    <p>Number of Pages:</p>
+    <%= b.number_field :page_num %><br>
+    
+    <%= b.fields_for :author do |a| %>
+      <p>Author Name:</p>
+      <%= a.text_field :name %><br>
+    <% end %>
+  <% end %>
+  
+  <p>Reading Status:</p>
+  <%= f.text_field :status %><br>
+
+  <p>Month:</p>
+  <%= f.text_field :month %><br>
+
+  <%= f.submit %>
+<% end %>

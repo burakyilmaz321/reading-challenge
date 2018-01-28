@@ -4,4 +4,8 @@ class ReadingsController < ApplicationController
       @readings = current_user.readings
     end
   end
+
+  def new
+    @reading = current_user.readings.new
+  end
 end
