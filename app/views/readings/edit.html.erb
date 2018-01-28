@@ -18,7 +18,7 @@
   <%= f.text_field :status %><br>
 
   <p>Month:</p>
-  <%= f.text_field :month %><br>
+  <%= f.select :month, @months %><br>
 
   <%= f.submit %>
 <% end %>

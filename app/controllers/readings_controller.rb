@@ -7,6 +7,8 @@ class ReadingsController < ApplicationController
 
   def new
     @reading = current_user.readings.new
+    @months = %w(January February March April May June
+                 July August September October November December)
   end
 
   def create
@@ -20,6 +22,8 @@ class ReadingsController < ApplicationController
 
   def edit
     @reading = current_user.readings.find(params[:id])
+    @months = %w(January February March April May June
+                 July August September October November December)
   end
   
   def update
