@@ -3,14 +3,13 @@
   <head>
     <title>ReadingChallenge</title>
     <%= csrf_meta_tags %>
-
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  	<div class="container">
-    	<%= yield %>	
-  	</div>
+   	<%= yield %>	
   </body>
 </html>
