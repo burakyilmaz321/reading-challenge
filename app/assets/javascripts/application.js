@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //= require jquery3
+//= bootstrap-switch.min
+//= paper-kit
 //= require popper
 //= require bootstrap
 //= require rails-ujs
