@@ -2,6 +2,7 @@ class ReadingsController < ApplicationController
   def index
     if user_signed_in?
       @readings = current_user.readings
+      @other_users = User.where.not id: current_user
     end
   end
 

@@ -91,10 +91,29 @@
         </div>
 
 
-
         <div class="tab-pane text-center" id="following" role="tabpanel">
-          <h3 class="text-muted">Not following anyone yet :(</h3>
-          <button class="btn btn-warning btn-round">Find artists</button>
+          <% if @other_users.length == 0 %>
+          <div class="text-center">
+            <h3 class="text-muted">You are the only one in this competition</h3>
+          </div>
+          <% else %>     
+
+          
+          <div class="row">
+            <div class="col-md-6 ml-auto mr-auto">
+              <ul class="list-unstyled follows">
+          <% @other_users.each do |user| %>
+                <li>
+                  <div class="row">
+                    <%= user.name %> read <%= user.readings.length %> books (<%= user.books.pluck(:page_num).reduce(0, :+) %> pages) so far.
+                </li>
+                <hr />
+          <% end %>
+              </ul>
+            </div>
+          </div>
+
+          <% end %>  
         </div>
       </div>
     </div>
