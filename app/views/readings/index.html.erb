@@ -1,48 +1,102 @@
-<h1>Reading Challenge Dashboard</h1>
+<nav class="navbar navbar-expand-md fixed-top navbar-transparent" color-on-scroll="150">
+  <div class="container">
+    <div class="navbar-translate">
+      <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-bar"></span>
+        <span class="navbar-toggler-bar"></span>
+        <span class="navbar-toggler-bar"></span>
+      </button>
+      <%= link_to "Reading Challenge 2018", root_path, class: "navbar-brand" %>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarToggler">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <%= link_to(edit_user_registration_path, class: "nav-link") do %>
+          Hello <%= current_user.name %>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-<% if user_signed_in? %>
-<p>Hello <%= current_user.name %></p>
-<li>
-<%= link_to 'Logout', destroy_user_session_path, method: :delete  %>        
-</li>
-<li>
-<%= link_to 'Edit registration', edit_user_registration_path  %>
-</li>
-<% else %>
-<li>
-<%= link_to 'Login', new_user_session_path   %>  
-</li>
-<li>
-<%= link_to 'Register', new_user_registration_path   %>
-</li>
-<% end %>
+<div class="wrapper">
+  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url(<%= asset_path 'login-image.jpg' %>);">
+    <div class="filter"></div>
+  </div>
+  <div class="section profile-content">
+    <div class="container">
+      <br/>
+      <div class="nav-tabs-navigation">
+        <div class="nav-tabs-wrapper">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#follows" role="tab">Your Readings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#following" role="tab">Competition</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Tab panes -->
+      <div class="tab-content following">
+        <div class="tab-pane active" id="follows" role="tabpanel">
+          <% if @readings.length == 0 %>
+          <div class="text-center">
+            <h3 class="text-muted">You haven't read any books yet :(</h3>
+            <%= link_to 'Read one!', new_reading_path, class: "btn btn-warning btn-round mt-4" %>
+          </div>
+          <% else %>
+          <div class="row">
+            <div class="col-md-6 ml-auto mr-auto">
+              <ul class="list-unstyled follows">
+                <% @readings.each do |reading| %>
+                <li>
+                  <div class="row">
+                    <div class="col-md-2 col-sm-2 m-auto">
+                      <%= reading.month %>
+                    </div>
+                    <div class="col-md-7 col-sm-4  ml-auto mr-auto">
+                      <h6><%= reading.book.title %> <small><i><%= reading.book.page_num %></i></small><br/><small><%= reading.book.author.name %></small></h6>
+                    </div>
+                    <div class="col-md-3 col-sm-2  m-auto">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <%= link_to reading_path(reading), method: :delete, data: {confirm: "Are you sure?"} do %>
+                          <i class="nc-icon nc-simple-remove mr-3"></i>
+                          <% end %>
+                          <%= link_to edit_reading_path(reading) do %>
+                          <i class="nc-icon nc-settings-gear-65"></i>
+                          <% end %>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <hr />
+                <% end %>
+              </ul>
+            </div>
+          </div>
+          <div class="text-center">
+            <%= link_to new_reading_path do %>
+            <button type="button" class="btn btn-primary btn-just-icon btn-lg"><i class="nc-icon nc-simple-add"></i></button>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
 
-<% if user_signed_in? %>
 
-  <h2>Your readings so far:</h2>
 
-  <table style="width:50%">
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Status</th>
-      <th>Month</th>
-      <th>Number of Pages</th>
-      <th></th>
-      <th></th>
-    </tr>
-    <% @readings.each do |reading| %>
-      <tr>
-        <td><%= reading.book.title %></td>
-        <td><%= reading.book.author.name %></td>
-        <td><%= reading.status %></td>
-        <td><%= reading.month %></td>
-        <td><%= reading.book.page_num %></td>
-        <td><%= link_to "Edit", edit_reading_path(reading) %></td>
-        <td><%= link_to "Delete", reading_path(reading), method: :delete, data: {confirm: "Are you sure?"} %></td>
-      </tr>
-    <% end %>
-  </table>
-
-  <%= link_to 'Add New Reading', new_reading_path %>
-<% end %>
+        <div class="tab-pane text-center" id="following" role="tabpanel">
+          <h3 class="text-muted">Not following anyone yet :(</h3>
+          <button class="btn btn-warning btn-round">Find artists</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
