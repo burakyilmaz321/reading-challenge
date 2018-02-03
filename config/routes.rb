@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   resources :readings, only: [:index, :new, :create, :edit, :update, :destroy]
 
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # Let’s encrypt
+	get '/.well-known/acme-challenge/:id' => 'readings#letsencrypt'
 end

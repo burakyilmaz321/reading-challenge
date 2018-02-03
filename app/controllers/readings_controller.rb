@@ -32,6 +32,10 @@ class ReadingsController < ApplicationController
     redirect_to root_path    
   end
 
+  def letsencrypt
+    render text: "#{params[:id]}.0cAuYWq9SINUcNsUv1NUiPdVf1f9P7pCkAC_C4cax08"
+  end
+
   private
 
   def reading_params
