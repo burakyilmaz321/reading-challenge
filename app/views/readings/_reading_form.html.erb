@@ -1,22 +1,23 @@
-<%= form_for @reading do |f| %>
+<%= form_for(reading, html: {class: "form-group"}) do |f| %>
   <%= f.fields_for :book_attributes do |b| %>
     <p>Book Title:</p>
-    <%= b.text_field :title %><br>
+    <%= b.text_field :title, class: "form-control" %>
     
     <p>Number of Pages:</p>
-    <%= b.number_field :page_num %><br>
+    <%= b.number_field :page_num, class: "form-control" %>
     
     <%= b.fields_for :author_attributes do |a| %>
       <p>Author Name:</p>
-      <%= a.text_field :name %><br>
+      <%= a.text_field :name, class: "form-control" %>
     <% end %>
   <% end %>
   
   <p>Reading Status:</p>
-  <%= f.select :status, %w(Reading Done) %><br>
+  <%= f.select(:status, %w(Reading Done), {}, {:class => "custom-select"}) %><br>
 
   <p>Month:</p>
-  <%= f.select :month, @months %><br>
-
-  <%= f.submit %>
+  <%= f.select(:month, @months, {}, {:class => "custom-select"}) %><br>
+  <div class="text-center mt-3">
+    <%= f.submit class: "btn btn-outline-success btn-round" %>
+  </div>
 <% end %>

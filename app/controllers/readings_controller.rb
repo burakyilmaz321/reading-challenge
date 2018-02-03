@@ -3,13 +3,9 @@ class ReadingsController < ApplicationController
     if user_signed_in?
       @readings = current_user.readings
       @other_users = User.where.not id: current_user
-    end
-  end
-
-  def new
-    @reading = current_user.readings.new
-    @months = %w(January February March April May June
+      @months = %w(January February March April May June
                  July August September October November December)
+    end
   end
 
   def create
@@ -19,12 +15,6 @@ class ReadingsController < ApplicationController
     else
       render 'new'
     end
-  end
-
-  def edit
-    @reading = current_user.readings.find(params[:id])
-    @months = %w(January February March April May June
-                 July August September October November December)
   end
   
   def update
