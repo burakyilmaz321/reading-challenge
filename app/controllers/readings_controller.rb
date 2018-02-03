@@ -41,6 +41,6 @@ class ReadingsController < ApplicationController
   private
 
   def reading_params
-    params.require(:reading).permit(:status, :month, book_attributes: [:title, :page_num, author_attributes: [:name]])
+    params.require(:reading).permit(:status, :month, book_attributes: [:id, :title, :page_num, author_attributes: [:id, :name]])
   end
 end

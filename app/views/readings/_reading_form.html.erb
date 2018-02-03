@@ -1,14 +1,14 @@
 <%= form_for(reading, html: {class: "form-group"}) do |f| %>
   <%= f.fields_for :book_attributes do |b| %>
     <p>Book Title:</p>
-    <%= b.text_field :title, class: "form-control" %>
+    <%= b.text_field :title, value: reading.book.nil? ? "" : reading.book.title, class: "form-control" %>
     
     <p>Number of Pages:</p>
-    <%= b.number_field :page_num, class: "form-control" %>
+    <%= b.number_field :page_num, value: reading.book.nil? ? "" : reading.book.page_num, class: "form-control" %>
     
     <%= b.fields_for :author_attributes do |a| %>
       <p>Author Name:</p>
-      <%= a.text_field :name, class: "form-control" %>
+      <%= a.text_field :name, value: reading.book.nil? ? "" : reading.book.author.name, class: "form-control" %>
     <% end %>
   <% end %>
   

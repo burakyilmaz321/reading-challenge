@@ -60,6 +60,7 @@ group :development do
   gem 'brakeman', :require => false
   gem 'rails_best_practices'
   gem 'rubycritic', :require => false
+  gem 'meta_request'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
