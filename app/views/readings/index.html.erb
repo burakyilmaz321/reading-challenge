@@ -76,8 +76,15 @@
                     <div class="col-md-2 col-sm-2 m-auto">
                       <%= r.month %>
                     </div>
-                    <div class="col-md-7 col-sm-4  ml-auto mr-auto">
+                    <div class="col-md-5 col-sm-4  ml-auto mr-auto">
                       <h6><%= r.book.title %> <small><i><%= r.book.page_num %></i></small><br/><small><%= r.book.author.name %></small></h6>
+                    </div>
+                    <div class="col-md-2 m-auto">
+                      <% if r.status == 'Done' %>
+                        <span class="label label-success">Done</span>
+                      <% elsif r.status == 'Reading' %>
+                        <span class="label label-warning">Reading</span>
+                      <% end %>  
                     </div>
                     <div class="col-md-3 col-sm-2  m-auto">
                       <div class="form-check">
