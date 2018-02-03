@@ -11,23 +11,29 @@ class ReadingsController < ApplicationController
   end
 
   def create
-    @reading = current_user.readings.new(reading_params)
-    if @reading.save
-      redirect_to root_path
+    if user_signed_in?
+      @reading = current_user.readings.new(reading_params)
+      if @reading.save
+        redirect_to root_path
+      end
     end
   end
   
   def update
-    @reading = current_user.readings.find(params[:id])
-    if @reading.update(reading_params)
-      redirect_to root_path
+    if user_signed_in?
+      @reading = current_user.readings.find(params[:id])
+      if @reading.update(reading_params)
+        redirect_to root_path
+      end
     end
   end
 
   def destroy
-    @reading = current_user.readings.find(params[:id])
-    @reading.destroy
-    redirect_to root_path    
+    if user_signed_in?
+      @reading = current_user.readings.find(params[:id])
+      @reading.destroy
+      redirect_to root_path    
+    end
   end
 
   private
