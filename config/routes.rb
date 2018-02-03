@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   devise_for :users
 
   # Let’s encrypt
-	get '/.well-known/acme-challenge/:id' => 'readings#letsencrypt'
+	get '/.well-known/acme-challenge/:id' => 'pages#letsencrypt'
 end
