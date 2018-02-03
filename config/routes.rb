@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'readings#index'
-  resources :readings, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :readings, only: [:index, :create, :update, :destroy]
 
   devise_for :users
 
