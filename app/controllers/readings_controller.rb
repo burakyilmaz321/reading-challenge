@@ -1,4 +1,6 @@
 class ReadingsController < ApplicationController
+  before_action :authenticate_user!, :except => [:letsencrypt]
+
   def index
     if user_signed_in?
       @readings = current_user.readings
