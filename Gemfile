@@ -55,6 +55,11 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'hirb'
+  gem 'traceroute'
+  gem 'bullet'
+  gem 'brakeman', :require => false
+  gem 'rails_best_practices'
+  gem 'rubycritic', :require => false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

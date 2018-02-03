@@ -3,8 +3,8 @@ class ReadingsController < ApplicationController
 
   def index
     if user_signed_in?
-      @readings = current_user.readings
-      @other_users = User.where.not id: current_user
+      @readings = current_user.readings.includes(:book)
+      @other_users = User.includes(:readings).where.not id: current_user
       @months = %w(January February March April May June
                  July August September October November December)
     end
