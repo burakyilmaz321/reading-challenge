@@ -14,8 +14,6 @@ class ReadingsController < ApplicationController
     @reading = current_user.readings.new(reading_params)
     if @reading.save
       redirect_to root_path
-    else
-      render 'new'
     end
   end
   
@@ -23,8 +21,6 @@ class ReadingsController < ApplicationController
     @reading = current_user.readings.find(params[:id])
     if @reading.update(reading_params)
       redirect_to root_path
-    else
-      render 'edit'
     end
   end
 
