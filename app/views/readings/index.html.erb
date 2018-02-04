@@ -53,54 +53,61 @@
           <% else %>
           <div class="row">
             <div class="col-md-6 ml-auto mr-auto">
-              <ul class="list-unstyled follows">
-                <% @readings.each do |r| %>
-                <!-- Edit Modal -->
-                <div class="modal fade" id="editModal-<%= r.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title text-center" id="exampleModalLabel">Edit reading</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body"> 
-                        <%= render partial: 'reading_form', locals: {reading: r} %>
-                      </div>
-                    </div>
-                  </div>
-                </div>                
-                <li>
-                  <div class="row">
-                    <div class="col-md-2 col-sm-2 m-auto">
-                      <%= r.month %>
-                    </div>
-                    <div class="col-md-5 col-sm-4  ml-auto mr-auto">
-                      <h6><%= r.book.title %> <small><i><%= r.book.page_num %></i></small><br/><small><%= r.book.author.name %></small></h6>
-                    </div>
-                    <div class="col-md-2 m-auto">
-                      <% if r.status == 'Done' %>
-                        <span class="label label-success">Done</span>
-                      <% elsif r.status == 'Reading' %>
-                        <span class="label label-warning">Reading</span>
-                      <% end %>  
-                    </div>
-                    <div class="col-md-3 col-sm-2  m-auto">
-                      <div class="form-check">
-                        <label class="form-check-label pl-0">
-                          <%= link_to reading_path(r), method: :delete, data: {confirm: "Are you sure?"} do %>
-                          <button type="button" class="btn btn-default btn-just-icon btn-sm"><i class="nc-icon nc-simple-remove"></i></button>
-                          <% end %>
-                        </label>
-                          <button type="button" class="btn btn-default btn-just-icon btn-sm" data-toggle="modal" data-target="#editModal-<%= r.id %>"><i class="nc-icon nc-settings-gear-65"></i></button>                          
+              
+              <% @readings.group_by(&:month).each do |month, readings| %>
+
+                <div class="m-auto text-center">
+                  <h6><%= month %></h6>
+                </div>
+                
+                <ul class="list-unstyled follows">
+                  <% readings.each do |r| %>
+                  <!-- Edit Modal -->
+                  <div class="modal fade" id="editModal-<%= r.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title text-center" id="exampleModalLabel">Edit reading</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body"> 
+                          <%= render partial: 'reading_form', locals: {reading: r} %>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </li>
-                <hr />
-                <% end %>
-              </ul>
+                  </div>                
+                  <li>
+                    <div class="row">
+                      <div class="col-md-5 col-sm-4  ml-auto mr-auto">
+                        <h6><%= r.book.title %> <small><i><%= r.book.page_num %></i></small><br/><small><%= r.book.author.name %></small></h6>
+                      </div>
+                      <div class="col-md-2 m-auto">
+                        <% if r.status == 'Done' %>
+                          <span class="label label-success">Done</span>
+                        <% elsif r.status == 'Reading' %>
+                          <span class="label label-warning">Reading</span>
+                        <% end %>  
+                      </div>
+                      <div class="col-md-3 col-sm-2  m-auto">
+                        <div class="form-check">
+                          <label class="form-check-label pl-0">
+                            <%= link_to reading_path(r), method: :delete, data: {confirm: "Are you sure?"} do %>
+                            <button type="button" class="btn btn-default btn-just-icon btn-sm"><i class="nc-icon nc-simple-remove"></i></button>
+                            <% end %>
+                          </label>
+                            <button type="button" class="btn btn-default btn-just-icon btn-sm" data-toggle="modal" data-target="#editModal-<%= r.id %>"><i class="nc-icon nc-settings-gear-65"></i></button>                          
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <hr />
+                  <% end %>
+                </ul>
+
+              <% end %>
+
             </div>
           </div>
           <div class="text-center">
