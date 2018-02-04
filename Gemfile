@@ -61,6 +61,7 @@ group :development do
   gem 'rails_best_practices'
   gem 'rubycritic', :require => false
   gem 'meta_request'
+  gem 'pry-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
