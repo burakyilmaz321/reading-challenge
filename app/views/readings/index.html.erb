@@ -29,7 +29,22 @@
   </div>
   <div class="section profile-content">
     <div class="container">
-      <br/>
+      <% if current_user.books.length > 0 %>
+      <div class="row">
+      <div class="col-md-6" style="
+          text-align: center;
+          margin: auto;
+      ">
+                <div class="card card-pricing">
+                  <div class="card-body">
+                    <h6 class="card-category">You have read</h6>
+                    <h1 class="card-title"><%= current_user.books.pluck(:page_num).reduce(0, :+) %></h1>
+                    <h6 class="card-category">pages so far.</h6>
+                  </div>
+                </div>
+          </div>
+          </div>
+      <% end %>
       <div class="nav-tabs-navigation">
         <div class="nav-tabs-wrapper">
           <ul class="nav nav-tabs" role="tablist">
